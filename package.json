@@ -1,0 +1,46 @@
+{
+    "name": "github-cdn-sdk",
+    "version": "1.0.0",
+    "description": "Atomic decentralized asset CDN SDK for GitHub infrastructure.",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "type": "module",
+    "files": [
+        "dist"
+    ],
+    "exports": {
+        ".": "./dist/index.js",
+        "./types": "./dist/types.js"
+    },
+    "scripts": {
+        "build": "tsc",
+        "prepublishOnly": "npm run build"
+    },
+    "devDependencies": {
+        "typescript": "^5.0.0",
+        "@types/node": "^20"
+    },
+    "keywords": [
+        "cdn",
+        "github",
+        "decentralized",
+        "storage",
+        "chunks",
+        "sdk",
+        "edge",
+        "cloudflare"
+    ],
+    "author": "CodeFaisalDev",
+    "license": "MIT",
+    "homepage": "https://github.com/CodeFaisalDev/github_cdn_sdk#readme",
+    "bugs": {
+        "url": "https://github.com/CodeFaisalDev/github_cdn_sdk/issues"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/CodeFaisalDev/github_cdn_sdk.git"
+    },
+    "engines": {
+        "node": ">=18.0.0"
+    }
+}
