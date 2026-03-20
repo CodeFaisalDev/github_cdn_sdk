@@ -2,12 +2,17 @@
 
 [![NPM Version](https://img.shields.io/npm/v/github-cdn-sdk?color=blue)](https://www.npmjs.com/package/github-cdn-sdk)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19130285.svg)](https://doi.org/10.5281/zenodo.19130285)
 
 A professional, **zero-cost** TypeScript SDK for decentralized asset delivery. Use GitHub as your storage backend and jsDelivr/Cloudflare as your global edge network.
 
-## why use this?
+> 📄 **Research Paper:** This SDK is accompanied by a peer-reviewed preprint: [GitHub as a Zero-Cost, Framework-Agnostic Content Delivery Network](https://doi.org/10.5281/zenodo.19130285) — published on Zenodo.
+
+## Why use this?
+
 - **Zero Hosting Fees**: Leverages GitHub's free storage and jsDelivr's free global CDN.
 - **Edge Native**: Works in Node.js, Vercel Edge, and Cloudflare Workers/Pages.
+
 ## 📊 Performance Comparison
 
 | Metric | Without Cloudflare | With Cloudflare Edge |
@@ -19,6 +24,7 @@ A professional, **zero-cost** TypeScript SDK for decentralized asset delivery. U
 | **Cost** | $0 | **$0** |
 
 > **Real-world Benchmarks:** Using Cloudflare edge caching, a **350MB** file is delivered in just **0.7s**, while a standard GitHub fetch for a **50MB** file can take over **25s**.
+
 - **Atomic Commits**: Uses the GitHub Git API to ensure asset uploads and registry updates are atomic.
 - **Micro-Chunking**: Automatically splits large files to bypass GitHub's file size limits and optimize streaming.
 
@@ -33,6 +39,7 @@ npm install github-cdn-sdk
 ## 🚀 Quick Start
 
 ### 1. Initialize the Client
+
 ```typescript
 import { GithubCDN } from "github-cdn-sdk";
 
@@ -45,8 +52,10 @@ const cdn = new GithubCDN({
 ```
 
 ### 2. Upload with Progress
+
 ```typescript
 const file = ...; // File, Blob, or Node.js Buffer
+
 const asset = await cdn.upload(file, (log) => {
   if (log.progress) {
     console.log(`Upload progress: ${log.progress.percentage}%`);
@@ -57,6 +66,7 @@ console.log("Live URL:", asset.links.cdn);
 ```
 
 ### 3. Fetch & Stream (Cloudflare Native)
+
 The `fetch` method is optimized for **Cloudflare Workers**. It races between multiple sources to ensure the fastest possible TTFB.
 
 ```typescript
@@ -97,8 +107,39 @@ Utility to verify if your GitHub Token and Repository permissions are correctly 
 ---
 
 ## 🛡️ Security Best Practices
+
 - **Token Scope**: Use a GitHub Fine-grained Personal Access Token restricted *only* to the specific CDN repository.
 - **Secrets Management**: Never commit your `GITHUB_TOKEN` to version control. Use Environment Variables in GitHub Actions or Cloudflare Pages.
 
+---
+
+## 📄 Research Paper
+
+This SDK is based on original independent research. If you use this package in academic work, please cite:
+
+**APA:**
+```
+Sorkar, M. F. (2026). GitHub as a Zero-Cost, Framework-Agnostic Content Delivery
+Network: File Chunking, Atomic Commits, Private Repository Support, and Cloudflare
+Pages Edge Delivery. Zenodo. https://doi.org/10.5281/zenodo.19130285
+```
+
+**BibTeX:**
+```bibtex
+@misc{sorkar2026github,
+  author    = {Sorkar, Md Faisal},
+  title     = {GitHub as a Zero-Cost, Framework-Agnostic Content Delivery Network:
+               File Chunking, Atomic Commits, Private Repository Support,
+               and Cloudflare Pages Edge Delivery},
+  year      = {2026},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.19130285},
+  url       = {https://zenodo.org/records/19130285}
+}
+```
+
+---
+
 ## 📜 License
+
 MIT © CodeFaisalDev
